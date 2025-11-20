@@ -9,7 +9,7 @@ from openpyxl.styles import Font, PatternFill, Alignment
 import io
 import os
 import logging
-import cloudscraper
+
 
 
 
