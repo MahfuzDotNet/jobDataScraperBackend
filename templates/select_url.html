@@ -1,0 +1,57 @@
+
+{% extends "base.html" %}
+
+{% block title %}Select URL - Data Scrapping{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Select a URL to Scrape</h2>
+                <h4 class="text-muted mb-4">My name is {{ user_name }}</h4>
+                
+                <form method="POST" action="{{ url_for('scrape_jobs') }}">
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label for="url_to_scrape" class="form-label">Select URL</label>
+                            <select class="form-select" id="url_to_scrape" name="url_to_scrape" required>
+                                <option value="">Choose...</option>
+                                <option value="https://example-jobs.com">Jobs Job (example.job)</option>
+                                <option value="https://indeed.com">Indeed</option>
+                                <option value="https://linkedin.com/jobs">LinkedIn Jobs</option>
+                                <option value="https://glassdoor.com">Glassdoor</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="max_pages" class="form-label">Max Pages</label>
+                            <select class="form-select" id="max_pages" name="max_pages" required>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="5" selected>5</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="category" class="form-label">Category</label>
+                            <select class="form-select" id="category" name="category" required>
+                                <option value="">Choose...</option>
+                                <option value="technology">Hair Dressing</option>
+                                <option value="engineering">Engineering</option>
+                                <option value="marketing">Marketing</option>
+                                <option value="design">Design</option>
+                                <option value="sales">Sales</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

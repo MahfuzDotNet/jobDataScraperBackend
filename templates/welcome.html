@@ -1,0 +1,102 @@
+
+{% extends "base.html" %}
+
+{% block title %}Welcome - Data Scrapping{% endblock %}
+
+{% block content %}
+<div class="welcome-container">
+    <div class="welcome-content">
+        <h1 class="welcome-title">Welcome to Job Data Scrapping</h1>
+        <p class="welcome-description">
+            This is a simple Django web application that scrapes job data from a job listing website.
+        </p>
+        <p class="welcome-instruction">
+            Click the button below to start scraping job data.
+        </p>
+        <a href="{{ url_for('select_url') }}" class="btn btn-primary btn-start">Start Scraping</a>
+    </div>
+    
+    <div class="footer-copyright">
+        <small>© 2024 URL Based Job Data Scrapping</small>
+    </div>
+</div>
+
+<style>
+.welcome-container {
+    background-color: #f8f9fa;
+    min-height: calc(100vh - 200px);
+    padding: 60px 20px 40px;
+    position: relative;
+}
+
+.welcome-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+    padding: 40px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.welcome-title {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.welcome-description {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.welcome-instruction {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.btn-start {
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.btn-start:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,123,255,0.3);
+}
+
+.footer-copyright {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #999;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .welcome-content {
+        margin: 20px;
+        padding: 30px 20px;
+    }
+    
+    .welcome-title {
+        font-size: 2rem;
+    }
+}
+</style>
+{% endblock %}

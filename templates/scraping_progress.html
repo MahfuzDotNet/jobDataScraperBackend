@@ -1,0 +1,70 @@
+
+{% extends "base.html" %}
+
+{% block title %}Scraping Progress - Data Scrapping{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Job Scraping Results</h2>
+                
+                <div class="mb-3">
+                    <strong>URL:</strong> {{ url }}<br>
+                    <strong>Max Pages:</strong> {{ max_pages }}<br>
+                    <strong>Category:</strong> {{ category }}
+                </div>
+                
+                <div class="progress mb-3">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                         role="progressbar" style="width: 0%" id="progressBar">
+                        0%
+                    </div>
+                </div>
+                
+                <div class="alert alert-info" id="statusMessage">
+                    Initializing scraping process...
+                </div>
+                
+                <div class="text-center">
+                    <button class="btn btn-success" id="viewResultsBtn" style="display: none;" 
+                            onclick="location.href='{{ url_for('results') }}'">
+                        View Results
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function updateProgress() {
+    fetch('/api/scrape_progress')
+        .then(response => response.json())
+        .then(data => {
+            const progressBar = document.getElementById('progressBar');
+            const statusMessage = document.getElementById('statusMessage');
+            const viewResultsBtn = document.getElementById('viewResultsBtn');
+            
+            progressBar.style.width = data.progress + '%';
+            progressBar.textContent = data.progress + '%';
+            
+            if (data.progress < 100) {
+                statusMessage.textContent = 'Scraping in progress...';
+                setTimeout(updateProgress, 1000);
+            } else {
+                statusMessage.textContent = 'Scraping completed successfully!';
+                statusMessage.className = 'alert alert-success';
+                progressBar.className = 'progress-bar bg-success';
+                viewResultsBtn.style.display = 'block';
+            }
+        });
+}
+
+// Start progress tracking
+setTimeout(updateProgress, 1000);
+</script>
+{% endblock %}
