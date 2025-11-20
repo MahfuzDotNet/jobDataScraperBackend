@@ -1,1 +1,1 @@
-cloudscraper
+cloudscraper>=1.2.71
